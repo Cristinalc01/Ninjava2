@@ -1,11 +1,9 @@
 package base;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class BasePage {
     protected WebDriver driver;
@@ -39,24 +37,24 @@ public class BasePage {
     public void highlightElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 4; i++) {
             try {
                 if (i % 2 == 0) {
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black;" +
                             "border: 3px solid red; background: yellow");
-                    BaseTest.extentManager.logScreenShot(driver);
                 } else {
-                    sleep(600);
+                    sleep(500);
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void sendKeys(WebElement element, String inputText){
-        BaseTest.extentManager.logInfo("Entered the text ", element);
+        BaseTest.extentManager.logInfo("entered the text, " + element);
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -64,7 +62,7 @@ public class BasePage {
     }
 
     public String getText(WebElement element){
-        BaseTest.extentManager.logInfo("Retrieved the text ", element);
+        BaseTest.extentManager.logInfo("retrieved the text, " + element);
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -72,16 +70,13 @@ public class BasePage {
     }
 
     public void click(WebElement element){
-        BaseTest.extentManager.logInfo("clicked the button ", element);
+        BaseTest.extentManager.logInfo("clicked the button, " + element);
         waitForElementClickability(element);
         moveIntoView(element);
         highlightElement(element);
         element.click();
     }
-    public void assertEquals(String actual, String expected){
-        BaseTest.extentManager.logInfo("Expected: " + expected);
-        BaseTest.extentManager.logInfo("Actual: " + actual);
-        Assert.assertEquals(actual, expected);
-    }
 
 }
+
+

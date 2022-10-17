@@ -1,5 +1,4 @@
 package utils;
-
 import org.openqa.selenium.WebDriver;
 
 public class BrowserUtils {
@@ -10,3 +9,4 @@ public class BrowserUtils {
         }
     }
 }
+
